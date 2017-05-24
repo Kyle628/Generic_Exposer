@@ -10,14 +10,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Arrays;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MyActivity";
     public static String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    public static Hashtable<String, String> plants = new Hashtable<String, String>();
+    public static Hashtable<String, ArrayList<String>> plants = new Hashtable<String, ArrayList<String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +54,15 @@ public class MainActivity extends AppCompatActivity {
                 String[] plant_numbers = company[0].split("\\+");
                 //System.out.println(Arrays.toString(plant_numbers));
 
+                ArrayList<String>  nameAndAddress = new ArrayList<String>();
+                nameAndAddress.add(company[1]);
+                nameAndAddress.add(company[2]);
+                nameAndAddress.add(company[3]);
+                nameAndAddress.add(company[4]);
+                nameAndAddress.add(company[5]);
+
                 for (int i = 0; i < plant_numbers.length; i++) {
-                    plants.put(plant_numbers[i], company[1]);
+                    plants.put(plant_numbers[i].replace("-",""), nameAndAddress);
                 }
 
 
@@ -98,16 +107,21 @@ public class MainActivity extends AppCompatActivity {
                     continue;
                 }
 
-                // use comma as separator
                 String[] company = line.split(cvsSplitBy);
 
                 String[] plant_numbers = company[0].split("\\+");
                 //System.out.println(Arrays.toString(plant_numbers));
 
-                for (int i = 0; i < plant_numbers.length; i++) {
-                    plants.put(plant_numbers[i], company[1]);
-                }
+                ArrayList<String>  nameAndAddress = new ArrayList<String>();
+                nameAndAddress.add(company[1]);
+                nameAndAddress.add(company[2]);
+                nameAndAddress.add(company[3]);
+                nameAndAddress.add(company[4]);
+                nameAndAddress.add(company[5]);
 
+                for (int i = 0; i < plant_numbers.length; i++) {
+                    plants.put(plant_numbers[i], nameAndAddress);
+                }
 
                 //System.out.println("Plant [code= " + company[0] + " , name=" + company[1] + "]");
 
@@ -133,11 +147,27 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user taps the Send button */
     public void sendMessage(View view) {
         Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Bundle extras = new Bundle();
+
         EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        message = plants.get(message);
-        message = message.replace("\"", "");
-        intent.putExtra(EXTRA_MESSAGE, message);
+        String plantId = editText.getText().toString();
+        plantId = plantId.toUpperCase().replace("-","");
+
+        String companyName = plants.get(plantId).get(0);
+        Log.d(TAG, companyName);
+        String street = plants.get(plantId).get(1);
+        String city = plants.get(plantId).get(2);
+        String state = plants.get(plantId).get(3);
+        String zip = plants.get(plantId).get(4);
+
+        extras.putString("companyName", companyName);
+        extras.putString("street", street);
+        extras.putString("city", city);
+        extras.putString("state", state);
+        extras.putString("zip", zip);
+
+        intent.putExtras(extras);
+        //intent.putExtra(EXTRA_MESSAGE, companyName);
         startActivity(intent);
     }
 }

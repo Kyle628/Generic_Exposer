@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My First app</string>
+    <string name="app_name">TrackMeat</string>
     <string name="button_send">Send</string>
     <string name="edit_plant_id">Enter Plant ID...</string>
 </resources>

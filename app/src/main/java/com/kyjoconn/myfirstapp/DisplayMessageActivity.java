@@ -14,10 +14,16 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
+        Bundle extras = intent.getExtras();
+        String companyName = extras.getString("companyName");
+        String street = extras.getString("street");
+        String city = extras.getString("city");
+        String state = extras.getString("state");
+        String zip = extras.getString("zip");
+        //String companyName = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
         // Capture the layout's TextView and set the string as its text
         TextView textView = (TextView) findViewById(R.id.textView);
-        textView.setText(message);
+        textView.setText(companyName + "\n" + street + "\n" + city + "\n" + state + "\n" + zip);
     }
 }
