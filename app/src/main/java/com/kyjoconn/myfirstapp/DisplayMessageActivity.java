@@ -55,7 +55,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
 
         }
-        
+
         TextView distanceText = (TextView) findViewById(R.id.distanceText);
         distanceText.setText("Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude));
 
