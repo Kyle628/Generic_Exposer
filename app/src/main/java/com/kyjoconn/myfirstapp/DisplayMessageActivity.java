@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
+import android.location.Location;
 import android.location.LocationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -64,6 +65,23 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
         TextView plantText = (TextView) findViewById(R.id.plantText);
         plantText.setText("Longitude:" + Double.toString(plantCoords.longitude) + "\nLatitude:" + Double.toString(plantCoords.latitude));
+
+        Location locationA = new Location("me");
+
+        locationA.setLatitude(latitude);
+        locationA.setLongitude(longitude);
+
+        Location locationB = new Location("plant");
+
+        locationB.setLatitude(plantCoords.latitude);
+        locationB.setLongitude(plantCoords.longitude);
+
+        float distance = locationA.distanceTo(locationB);
+        double distance_d = Double.parseDouble(String.valueOf(distance));
+        double num_miles = getMiles((distance_d));
+        TextView differenceText = (TextView) findViewById(R.id.differenceText);
+        differenceText.setText(String.valueOf((int)num_miles) + " miles away");
+
     }
 
     public LatLng getLocationFromAddress(Context context, String strAddress) {
@@ -90,5 +108,9 @@ public class DisplayMessageActivity extends AppCompatActivity {
         }
 
         return p1;
+    }
+
+    double getMiles(double i) {
+        return i*0.000621371192;
     }
 }
