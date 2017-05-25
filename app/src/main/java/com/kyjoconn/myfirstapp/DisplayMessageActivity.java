@@ -55,8 +55,7 @@ public class DisplayMessageActivity extends AppCompatActivity {
 
 
         }
-
-        Toast.makeText(getApplicationContext(), "Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude), Toast.LENGTH_SHORT).show();
+        
         TextView distanceText = (TextView) findViewById(R.id.distanceText);
         distanceText.setText("Longitude:" + Double.toString(longitude) + "\nLatitude:" + Double.toString(latitude));
 
