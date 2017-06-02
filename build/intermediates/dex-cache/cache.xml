@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/kyleoconnor/Desktop/Generic_Exposer/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2abe8089e77239dc21c682f812d31e5d6e3893c5">
+        <dex dex="/Users/kyleoconnor/Desktop/Generic_Exposer/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_5639578d14ce32615bed94fe88b9aca763e345ce/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kyleoconnor/Desktop/Generic_Exposer/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.3"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="/Users/kyleoconnor/Desktop/Generic_Exposer/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_ea7de5fd8b5c902e087b78f784caef0f00a61abd/classes.dex" />
+    </item>
+
+</items>
